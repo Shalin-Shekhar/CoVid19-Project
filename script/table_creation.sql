@@ -1,16 +1,16 @@
-CREATE TABLE public."LOCATION_DETAILS"
+CREATE TABLE "LOCATION_DETAILS"
 (
     "UID" integer NOT NULL,
     "COUNTRY" "char",
     "STATE" "char",
     "COUNTY" "char",
-    latitude double precision,
-    longitude double precision,
+    "LATITUDE" double precision,
+    "LONGITUDE" double precision,
     CONSTRAINT "LOCATION_DETAILS_pkey" PRIMARY KEY ("UID")
 )
 ;
 
-CREATE TABLE public."LOCATION_STATS"
+CREATE TABLE "LOCATION_STATS"
 (
     "UID" integer NOT NULL,
     "KEY" "char" NOT NULL,
