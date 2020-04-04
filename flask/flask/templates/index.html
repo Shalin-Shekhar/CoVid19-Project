@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JakesJollyCovidTimes Index</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bring in our bootstrap stylesheet -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="static/style.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Welcome to JakesJollyCovidTimes!</h1>
+      <br>
+      <p>Click <a href="/logout">here</a> to logout.</p>
+      {% for message in get_flashed_messages() %}
+        {{ message }}
+      {% endfor %}
+    </div>
+  </body>
+</html>
