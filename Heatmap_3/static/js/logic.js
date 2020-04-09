@@ -3,7 +3,7 @@ console.log("CoVid19-Project here");
 var myMap = L.map("map", {
   center: [39.8283, -98.5795],
   // zoom: 3.2,
-  zoom: 5,
+  zoom: 4,
 });
 
 // Create the streets tile layer
@@ -71,10 +71,23 @@ function updateMap() {
     // Get the GeoJSON file that corresponds to the 
     // user selected date
     geojson_file = getGeojsonFile(selectedDate);
-    console.log(`geojson_file: ${geojson_file}`); 
+    //console.log(`geojson_file: ${geojson_file}`); 
+
+  index = 0
+  myMap.eachLayer(function(layer){
+    if(index>0){
+      myMap.removeLayer(layer)
+    }
+    index = index + 1;
+  });
+
+
+
+
 
     updateHeatMap(geojson_file);
   }
+  
 }  // end of updateMap()
 
 
@@ -97,21 +110,24 @@ function updateHeatMap(geojson_file) {
 
       // console.log("latlon");
       // console.log(latlon);
-      heatArray.push(latlon)
+      for(i=0;i<covidCase.properties.Confirmed_cases*15;i++){
+        heatArray.push(latlon);
+      }
+    
     });
 
-    console.log("heatArray")
-    console.log(heatArray)
+    //console.log("heatArray")
+    //console.log(heatArray)
 
     // myMap.removeLayer(heat);
 
     heat = L.heatLayer(heatArray, {
-      radius: 20,
-      blur: 2
+      radius: 17,
+      blur: 4
     }).addTo(myMap);
 
   // The last step in the asynchronous d3.json() is a delay to support the animation
-  sleep(1000);  // milliseconds
+  sleep(500);  // milliseconds
 
   });  // end of d3.json()
 

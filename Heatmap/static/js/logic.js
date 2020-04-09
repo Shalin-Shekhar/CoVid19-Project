@@ -4,7 +4,7 @@ var myMap = L.map("map", {
   // center: [37.7749, -122.4194],
   // zoom: 13
   center: [39.8283, -98.5795],
-  zoom: 3.2,
+  zoom: 4
 });
 
 // Create the streets tile layer
@@ -16,7 +16,7 @@ var streetmap = L.tileLayer("https://api.mapbox.com/styles/v1/mapbox/streets-v11
 }).addTo(myMap);
 
 // var url = "http://localhost:8000/date=40";
-test_file = "static/data/test_geojson.geojson"
+test_file = "static/data/test_2geojson.geojson.txt"
 d3.json(test_file, function(response) {
   console.log("response.features");
   console.log(response.features);
@@ -26,20 +26,25 @@ d3.json(test_file, function(response) {
   var covidCases = response.features;
 
   covidCases.forEach(function(covidCase) {
+    //console.log(covidCase.properties.Deaths);
+    //for (i=0; i<covidCases)
     latlon = [covidCase.geometry.coordinates[0], covidCase.geometry.coordinates[1]];
     // latlon = covidCase.geometry.coordinates;
 
-    console.log("latlon");
-    console.log(latlon);
-    heatArray.push(latlon)
+    //console.log("latlon");
+    //console.log(latlon);
+    if(covidCase.properties.Deaths>0){
+    for(i=0;i<covidCase.properties.Deaths*450;i++){
+        heatArray.push(latlon)
+      }
+    }
   });
 
-  console.log("heatArray")
-  console.log(heatArray)
+  //console.log("heatArray")
+  //console.log(heatArray)
 
   var heat = L.heatLayer(heatArray, {
-    radius: 50,
-    blur: 1
+    radius: 14
   }).addTo(myMap);
 
 });
