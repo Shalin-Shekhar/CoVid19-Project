@@ -6,4 +6,5 @@
 - Insure that the python environment has every library that is listed at the top of app.py
 - Insert a valid Mapbox API key in config.js
 - Insert a valid database password in psql_config.py
+- Start the Flask server with $python -m http.server.  The terminal will identify the target url.
 
